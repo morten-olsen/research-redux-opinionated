@@ -1,0 +1,13 @@
+structure:
+  - './introduction.md'
+  - './structure.md'
+
+  - './redux/api.md'
+  - './redux/middleware.md'
+  - './redux/actions.md'
+  - './redux/reducers.md'
+
+  - './react-redux/entity-components.md'
+  - './react-redux/list-components.md'
+
+  - './conclusion.md'
