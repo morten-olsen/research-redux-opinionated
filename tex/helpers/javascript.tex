@@ -1,0 +1,50 @@
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%\usepackage{caption}
+%\DeclareCaptionFont{white}{\color{white}}
+%\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+%\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let, const},
+  keywordstyle=\color{codepurple}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{codegray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{codegreen}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JavaScript,
+   basicstyle=\footnotesize\ttfamily,
+   captionpos=b,
+   %numbers=left,
+   numberstyle=\tiny,
+   %stepnumber=2,
+   numbersep=8pt,
+   tabsize=2,
+   extendedchars=true,
+   breaklines=true,
+   showspaces=false,
+   showtabs=false,
+   aboveskip=3mm,
+   belowskip=13mm,
+   %xleftmargin=17pt,
+   framexleftmargin=17pt,
+   framexrightmargin=5pt,
+   framexbottommargin=4pt,
+   backgroundcolor=\color{white},
+   showstringspaces=false,
+}

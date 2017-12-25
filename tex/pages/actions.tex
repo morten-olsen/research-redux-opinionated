@@ -1,0 +1,48 @@
+\section{Actions}
+Actions has traditionally been written as simple exported functions, which has it's advantages, but as I will argue, also adds a lot of limitations and forces the use of a lot of boilerplate code.
+
+The main issue with the traditional approach (shown in listing \ref{lst:actions_t_1}) is that it is not very expandable, and therefore does not really allow us to add standards for action creations into our project, and would therefore have to write a lot of boiler plating each in all of our actions.
+
+\lstinputlisting[label=lst:actions_t_1,caption=A "get" action using the traditional approach, lastline=7]{assets/code/traditional/actions/users.js}
+
+Instead we should look for a way which allows for more expansions, so we easily can create standards from just a few parameters, and expand them for unique features for a given action "set" and this is where objects and the spread operator becomes quite useful
+
+So as we saw before, we have a set of actions for each area of the API, which are the once specified by \lstinline{CRUD}
+
+So if we instead try to use this as the basis, we should be able to create an API repository action factory, which should provide as with all the basic commands needed.
+
+Listing \ref{lst:actions_s_1} shows the outer part of our creator, which simply is a function which returns an object
+We are going to need three parameters
+
+\paragraph{singular} The name of a single item, for instance "user"
+\paragraph{plural} The name of multible item, for instance "users"
+\paragraph{endpoint} The URI path part, which represents the repository, for instance "user"
+
+\begin{lstlisting}[label=lst:actions_s_1, caption=The wrapper for the repository factory]
+export const createRepo = (singular, plural, endpoint) => ({
+  ...
+});
+\end{lstlisting}
+
+So with this we can start to add actions to our factory, in our case \lstinline{get}, \lstinline{remove}, \lstinline{add}, \lstinline{update}, \lstinline{search} and \lstinline{more}\footnote{As additional pages are handled differently than the first, we need to add this method}
+
+\lstinputlisting[label=lst:actions_s_2, caption=Definition of the get action, firstline=2,lastline=8]{assets/code/helpers/utils/actions.js}
+
+So when we will in all the actions, we end up with a 55 line long file, which is slightly more than the non standardised one, which is 53 lines, but where the 53 lined one, will be that length for each repository, the standardised one only need these lines once
+
+Now the only thing needed is to create a repo file (Listing \ref{lst:actions_s_3}), which is now really simple, and takes a total of three lines, which are the three lines that will be needed to add a new repositry, which has the standard functionality.
+
+A few things to note
+
+\begin{enumerate}
+\item It uses the spread operator, even when it is not necessary, to illustrate that this is an object, which could be combined with other objects or properties to add additional functionality to a action set.
+\item It uses \lstinline{module.exports} even though the rest of the examples are written using \lstinline{ES6 module import}. This is to be able to destructor the actions in an import statement such as \lstinline|import { get, add } from 'action';|
+\end{enumerate}
+
+\lstinputlisting[label=lst:actions_s_3, caption=The user repo created using our new factory, firstline=2]{assets/code/standardised/actions/users.js}
+
+\subsection*{Tasks}
+
+\begin{enumerate}
+\item Expand the factory with model validation, for validating the model before it is send to the server. If it fails, it should make sure a invalid action is dispatched on \lstinline{redux}	
+\end{enumerate}
